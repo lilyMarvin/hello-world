@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Graph Tool </title>
+    <script src="themes.js"></script>
+    <script src="graphs.js"></script>
+    <script src="commandWindowJS.js"></script>
+    <script src="mainJS.js"></script>
+    <link rel="stylesheet" type="text/css" href="mainCSS.css">
+    <link rel="stylesheet" type="text/css" href="graphStyle.css">
+  </head>
+  <body id="body">
+
+    <!-- Header -->
+    <div class="headerSt">
+      <canvas id="ohNo" height="40px" width="80px"> </canvas>
+      <!-- NavBar -->
+      <ul>
+        <li class="headerMenu" style="cursor:pointer"> Home  </li>
+        <li class="headerMenu"> Resources
+          <ul class="headerDD">
+            <li id="resetButton"> Reset Colors </li>
+            <li id="cmdButton"> Command Window </li>
+            <li id="toggleEdgesButton"> Toggle Edges </li>
+            <li> Coffee </li>
+          </ul>
+        </li>
+        <li class="headerMenu"> Themes
+          <ul class="headerDD">
+            <li id="setDefaultTheme"> Default </li>
+            <li id="setBlueTheme"> Blue </li>
+            <li id="setClearTheme"> Clear </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- End of NavBar -->
+      <form id="search" class="headSearch" onsubmit="checkFast();return false;">
+        <input id="searchInput" type="text" placeholder="Search...">
+      </form>
+    </div>
+    <!-- End of header -->
+
+    <!-- Accordian Sidebar -->
+    <div id="accBar" class="accordianBar">
+      <button id="openButton" type = "button" onclick="toggleNav();">
+        <b>O<br>P<br>T<br>I<br>O<br>N<br>S</b>
+      </button>
+      <button type="button" class="accordian" onclick="drop(this);"> Node Visibility </button>
+        <div class="option">
+          <button type="button" id="bluBtn" class="optionButton"> Hide Blue Nodes </button>
+          <button type="button" id="grnBtn" class="optionButton alt"> Hide Green Nodes </button>
+          <button type="button" id="purBtn" class="optionButton"> Hide Purple Nodes </button>
+          <button type="button" id="allBtn" class="optionButton alt"> <b>Hide All Nodes</b> </button>
+        </div>
+      <button type="button" class="accordian" onclick="drop(this);"> Two </button>
+        <div class="option">
+          <button type="button" id="bluBtn" class="optionButton"> Hide Blue Nodes </button>
+          <button type="button" id="grnBtn" class="optionButton alt"> Hide Green Nodes </button>
+          <button type="button" id="purBtn" class="optionButton"> Hide Purple Nodes </button>
+          <button type="button" id="allBtn" class="optionButton alt"> <b>Hide All Nodes</b> </button>
+        </div>
+      <button type="button" class="accordian" onclick="drop(this);"> Three </button>
+        <div class="option">
+          <button type="button" id="bluBtn" class="optionButton"> Hide Blue Nodes </button>
+          <button type="button" id="grnBtn" class="optionButton alt"> Hide Green Nodes </button>
+          <button type="button" id="purBtn" class="optionButton"> Hide Purple Nodes </button>
+          <button type="button" id="allBtn" class="optionButton alt"> <b>Hide All Nodes</b> </button>
+        </div>
+    </div>
+
+    <!-- Graph Body, Initialized on Load -->
+    <svg id="svgBody" height="100%" width="100%">
+    </svg>
+
+    <div id="cmdWindow" class="cmdWindow" style="top:48px;left:0px;">
+      <div id="cmdMovBar">
+        <span id="cmdMovBarText"> Command Window </span>
+        <canvas id="exitButton" height="20" width="20"> </canvas>
+      </div>
+      <form id="cmdInForm" onsubmit="readInput(); return false;">
+        <input id="cmdIn" type="text" autocomplete="off">
+      </form>
+      <pre><div id="outputText">
+      </div></pre>
+    </div>
+  </body>
+</html>
