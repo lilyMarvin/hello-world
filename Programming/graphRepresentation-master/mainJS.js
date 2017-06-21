@@ -49,8 +49,12 @@ function initializeListeners() {
   });
   // "Toggle Edges" Button
   document.getElementById("toggleEdgesButton").addEventListener("click", function() {
-
+    var nodes = document.getElementsByClassName("node");
+      for (var i = 0; i < nodes.length; i++) {
+        toggleEdges(nodes[i].id.substr(4,3));
+      }
   });
+
 
 
 
@@ -70,6 +74,21 @@ function initializeListeners() {
 }
 
 
+
+
+//toggling the edges
+function toggleEdges(nodeId) {
+var edges = document.getElementsByClassName(nodeId + "edge");
+
+    for (var i = 0; i < edges.length; i++) {
+      if(edges[i].style.visibility == "visible") {
+        edges[i].style.visibility = "hidden";
+      }
+      else {
+        edges[i].style.visibility = "hidden";
+      }
+    }
+}
 
 
 
@@ -94,7 +113,6 @@ function setAdjEdgeColors(nodeId, colorPri) {
       otherNodeId, otherNodePri;
 
   for (var i = 0; i < edges.length; i++) {
-
     //finding the other node's id number
     if(edges[i].id.substr(4,3) == nodeId){
       otherNodeId = edges[i].id.substr(7,3);
@@ -102,7 +120,6 @@ function setAdjEdgeColors(nodeId, colorPri) {
     else{
       otherNodeId = edges[i].id.substr(4,3);
     }
-
     //setting otherNodePri depending on the color of that node
     switch (currentGraph.nodeStates[otherNodeId]) {
       case 2 :
@@ -115,7 +132,6 @@ function setAdjEdgeColors(nodeId, colorPri) {
         otherNodePri = 0;
         break;
     }
-
     //setting pattern
     if((colorPri == 1 && colorPri > otherNodePri) || (otherNodePri == 1 && otherNodePri > colorPri)){
       edges[i].setAttribute("stroke-dasharray", "10,5");
@@ -126,8 +142,7 @@ function setAdjEdgeColors(nodeId, colorPri) {
     else{
       edges[i].setAttribute("stroke-dasharray", "0,0");
     }
-
-    //actually drawing the nodes and choosing the color
+    //setting the color
     edges[i].style.stroke = theme.edgeFill[Math.max(colorPri, otherNodePri)];
   }
 }
@@ -149,10 +164,12 @@ function resetToDefault() {
       var nodeEle = document.getElementById("node" + menuId);
 
       nodeEle.setAttribute("r", "35");
+
       if((menuId%3) == 0){
       nodeEle.setAttribute("rx", "50");
       nodeEle.setAttribute("ry", "25");
-    }
+      }
+
       nodeEle.setAttribute("width", "70");
       nodeEle.setAttribute("height", "70");
 
