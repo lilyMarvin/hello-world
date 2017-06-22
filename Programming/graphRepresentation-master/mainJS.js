@@ -11,6 +11,7 @@ var currentGraph,
     defaultGraph = testingGraph,
     defaultTheme = testingTheme;
 
+
 function getCurrentGraph() {
   return currentGraph;
 }
@@ -77,11 +78,11 @@ function initializeListeners() {
 function toggleEdges() {
   var edges = document.getElementsByClassName("edge");
     for (var i = 0; i < edges.length; i++) {
-      if(edges[i].style.visibility == "visible") {
-        edges[i].style.visibility = "hidden";
+      if(edges[i].style.visibility == "hidden") {
+        edges[i].style.visibility = "visible";
       }
       else {
-        edges[i].style.visibility = "visible";
+        edges[i].style.visibility = "hidden";
       }
     }
 }
@@ -158,7 +159,7 @@ function resetToDefault() {
 
       nodeEle.setAttribute("r", "35");
 
-      if((menuId%3) == 0){
+      if(currentGraph.nodes[i].name == "AccessPoint"){
       nodeEle.setAttribute("rx", "50");
       nodeEle.setAttribute("ry", "25");
       }
@@ -180,7 +181,7 @@ function addNodeHover(nodeId, node) {
   par.addEventListener("mouseover", function() {
     node.setAttribute("r","45");
 
-    if((nodeId%3) == 0){
+    if(currentGraph.nodes[nodeId].name == "AccessPoint"){
     node.setAttribute("rx", "70");
     node.setAttribute("ry", "35");
   }
@@ -197,7 +198,7 @@ function addNodeHover(nodeId, node) {
     if(menu.style.visibility == "hidden") {
       node.setAttribute("r", "35");
 
-      if((nodeId%3) == 0){
+      if(currentGraph.nodes[nodeId].name == "AccessPoint"){
       node.setAttribute("rx", "50");
       node.setAttribute("ry", "25");
     }
