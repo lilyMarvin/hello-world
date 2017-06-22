@@ -49,10 +49,7 @@ function initializeListeners() {
   });
   // "Toggle Edges" Button
   document.getElementById("toggleEdgesButton").addEventListener("click", function() {
-    var nodes = document.getElementsByClassName("node");
-      for (var i = 0; i < nodes.length; i++) {
-        toggleEdges(nodes[i].id.substr(4,3));
-      }
+        toggleEdges();
   });
 
 
@@ -77,21 +74,17 @@ function initializeListeners() {
 
 
 //toggling the edges
-function toggleEdges(nodeId) {
-var edges = document.getElementsByClassName(nodeId + "edge");
-
+function toggleEdges() {
+  var edges = document.getElementsByClassName("edge");
     for (var i = 0; i < edges.length; i++) {
       if(edges[i].style.visibility == "visible") {
         edges[i].style.visibility = "hidden";
       }
       else {
-        edges[i].style.visibility = "hidden";
+        edges[i].style.visibility = "visible";
       }
     }
 }
-
-
-
 
 
 //setting the color for the node
