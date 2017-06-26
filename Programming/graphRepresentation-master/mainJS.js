@@ -39,7 +39,7 @@ function initializeListeners() {
     addMenuButtonHover(menuButtonList[i]);
   }
 
-  // "RESOURCES" DROPDOWN
+    // "RESOURCES" DROPDOWN
   // "Reset" Button
   document.getElementById("resetButton").addEventListener("click", function() {
     resetToDefault();
@@ -50,13 +50,13 @@ function initializeListeners() {
   });
   // "Toggle Edges" Button
   document.getElementById("toggleEdgesButton").addEventListener("click", function() {
-    toggleEdges();
+        toggleEdges();
   });
 
 
 
 
-  // "THEMES" DROPDOWN
+    // "THEMES" DROPDOWN
   // "Default" Theme Button
   document.getElementById("setDefaultTheme").addEventListener("click", function() {
     setTheme(defaultTheme);
@@ -68,27 +68,6 @@ function initializeListeners() {
   // "Clear" Theme Button
   document.getElementById("setClearTheme").addEventListener("click", function() {
     setTheme(clearTheme);
-  });
-
-
-
-
-  // "MAP OPTIONS" DROPDOWN
-  // "Move Up" Button
-  document.getElementById("moveUp").addEventListener("click", function() {
-    shiftUp();
-  });
-  // "Move Down" Button
-  document.getElementById("moveDown").addEventListener("click", function() {
-    shiftDown();
-  });
-  // "Move Left" Button
-  document.getElementById("moveLeft").addEventListener("click", function() {
-    shiftLeft();
-  });
-  // "Move Right" Button
-  document.getElementById("moveRight").addEventListener("click", function() {
-    shiftRight();
   });
 }
 
@@ -115,9 +94,27 @@ function setColor(nodeId, val) {
   var node = document.getElementById("node" + nodeId);
   menu.firstElementChild.innerHTML = "Status: " + theme.levelNam[val];
   currentGraph.nodeStates[nodeId] = val;
-  node.setAttribute("fill", theme.nodeFill[val]);
-  node.setAttribute("stroke", theme.nodeBord[val]);
+
+  //switch statement to set color
+  if (node.type == "Intersection") {
+    node.setAttribute("fill", "rgb(255,0,0)");
+    node.setAttribute("stroke", "rgb(0,0,0)");
+  }
+  else if (node.type == "Border"){
+      node.setAttribute("fill", "rgb(0,255,0)");
+      node.setAttribute("stroke", "rgb(0,0,0)");
+    }
+    else if (node.type == "AccessPoint"){
+      node.setAttribute("fill", "rgb(0,0,255)");
+      node.setAttribute("stroke", "rgb(0,0,0)");
+    }
+    else{
+      node.setAttribute("fill", "rgb(175,175,175)");
+      node.setAttribute("stroke", "rgb(0,0,0)");
+    }
+
   node.nextElementSibling.setAttribute("fill", theme.fontFill[val]);
+
   setAdjEdgeColors(nodeId, val);
 }
 
@@ -178,11 +175,14 @@ function resetToDefault() {
       var menuId = menus[i].id.substr(4,3);
       var nodeEle = document.getElementById("node" + menuId);
 
+      if(currentGraph.nodes[i].type == "Intersection"){
       nodeEle.setAttribute("r", "35");
-
-      if(currentGraph.nodes[i].name == "AcessPoint"){
-      nodeEle.setAttribute("rx", "50");
-      nodeEle.setAttribute("ry", "25");
+      }
+      if(currentGraph.nodes[i].type == "Border"){
+      nodeEle.setAttribute("r", "15");
+      }
+      else{
+      nodeEle.setAttribute("r", "25");
       }
 
       nodeEle.setAttribute("width", "70");
@@ -197,43 +197,50 @@ function resetToDefault() {
 
 //makes the nodes change size during/after mouseover
 function addNodeHover(nodeId, node) {
-  var par = node.parentElement;
-  var text = node.nextElementSibling;
+  var par = node.parentElement,
+      // text = node.nextElementSibling,
+      incVal = 10; // Value that hovering will change the size of the element by\
+      var menu = document.getElementById(node.id + "Menu");
+
   par.addEventListener("mouseover", function() {
-    node.setAttribute("r","45");
-
-    if(currentGraph.nodes[nodeId].name == "AcessPoint"){
-    node.setAttribute("rx", "70");
-    node.setAttribute("ry", "35");
-  }
-
-    node.setAttribute("width", "90");
-    node.setAttribute("height", "90");
-    text.style.fontSize = "65px";
-    text.style.transform = "translateY(21px)";
+    if(menu.style.visibility != "visible") {
+      if (currentGraph.nodes[nodeId].type == "AccessPoint" || currentGraph.nodes[nodeId].type == "Intersection" || currentGraph.nodes[nodeId].type == "Border") {
+        node.setAttribute("r", parseInt(node.getAttribute("r")) + incVal);
+      }
+      else {
+        var width = parseInt(node.getAttribute("width"));
+        node.setAttribute("x", parseInt(node.getAttribute("x")) - incVal);
+        node.setAttribute("y", parseInt(node.getAttribute("y")) - incVal);
+        node.setAttribute("height", width + 2 * incVal);
+        node.setAttribute("width", width + 2 * incVal);
+      }
+      // text.style.fontSize = "65px";
+      // text.style.transform = "translateY(21px)";
+    }
   });
 
-  var menu = document.getElementById(node.id + "Menu");
-  menu.style.visibility = "hidden";
   par.addEventListener("mouseout", function() {
-    if(menu.style.visibility == "hidden") {
-      node.setAttribute("r", "35");
-
-      if(currentGraph.nodes[nodeId].name == "AcessPoint"){
-      node.setAttribute("rx", "50");
-      node.setAttribute("ry", "25");
-    }
-      node.setAttribute("width", "70");
-      node.setAttribute("height", "70");
-      text.style.fontSize = "40px";
-      text.style.transform = "translateY(12px)";
+    if(menu.style.visibility != "visible") {
+      if (currentGraph.nodes[nodeId].type == "AccessPoint" || currentGraph.nodes[nodeId].type == "Intersection" || currentGraph.nodes[nodeId].type == "Border") {
+        node.setAttribute("r", parseInt(node.getAttribute("r")) - incVal);
+      }
+      else {
+        var width = parseInt(node.getAttribute("width"));
+        node.setAttribute("x", parseInt(node.getAttribute("x")) + incVal);
+        node.setAttribute("y", parseInt(node.getAttribute("y")) + incVal);
+        node.setAttribute("height", width - 2 * incVal);
+        node.setAttribute("width", width - 2 * incVal);
+      }
+      // text.style.fontSize = "40px";
+      // text.style.transform = "translateY(12px)";
     }
   });
+
   par.addEventListener("click", function() {
-    if(menu.style.visibility == "hidden") {
-      menu.style.visibility = "visible";
-    } else {
+    if(menu.style.visibility == "visible") {
       menu.style.visibility = "hidden";
+    } else {
+      menu.style.visibility = "visible";
     }
   });
 }

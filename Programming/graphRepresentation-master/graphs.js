@@ -3,75 +3,99 @@ var testingGraph = {
   //19 nodes, 10 intersections, 6 access points, 3 buildings
   nodes: [
     //level 1
-    { name: "Intersection" , id: "000" , cx: "75px" , cy: "475px" },
-    { name: "Intersection" , id: "001" , cx: "600px" , cy: "475px" },
-    { name: "Intersection" , id: "002" , cx: "1200px" , cy: "475px" },
-    { name: "Intersection" , id: "003" , cx: "1500px" , cy: "475px" },
-    { name: "Intersection" , id: "004" , cx: "1800px" , cy: "475px" },
+    { name: "Intersection" , id: "000" , cx: "75px" , cy: "475px", type: "Intersection" },
+    { name: "Intersection" , id: "001" , cx: "600px" , cy: "475px", type: "Intersection" },
+    { name: "Intersection" , id: "002" , cx: "1200px" , cy: "475px", type: "Intersection" },
+    { name: "Intersection" , id: "003" , cx: "1500px" , cy: "475px", type: "Intersection" },
+    { name: "Intersection" , id: "004" , cx: "1800px" , cy: "475px", type: "Intersection" },
     //level 2
-    { name: "Intersection" , id: "005" , cx: "150px" , cy: "650px" },
-    { name: "Intersection" , id: "006" , cx: "600px" , cy: "650px" },
+    { name: "Intersection" , id: "005" , cx: "150px" , cy: "650px", type: "Intersection" },
+    { name: "Intersection" , id: "006" , cx: "600px" , cy: "650px", type: "Intersection" },
     //level 3
-    { name: "Intersection" , id: "007" , cx: "600px" , cy: "900px" },
-    { name: "Intersection" , id: "008" , cx: "1200px" , cy: "900px" },
-    { name: "Intersection" , id: "009" , cx: "1500px" , cy: "900px" },
+    { name: "Intersection" , id: "007" , cx: "600px" , cy: "900px", type: "Intersection" },
+    { name: "Intersection" , id: "008" , cx: "1200px" , cy: "900px", type: "Intersection" },
+    { name: "Intersection" , id: "009" , cx: "1500px" , cy: "900px", type: "Intersection" },
 
     //coffee shop
-    { name: "AccessPoint" , id: "010" , cx: "700px" , cy: "475px" },
+    { name: "AccessPoint" , id: "010" , cx: "700px" , cy: "475px", type: "AccessPoint" },
     //hospital
-    { name: "AccessPoint" , id: "011" , cx: "1500px" , cy: "350px" },
-    { name: "AccessPoint" , id: "012" , cx: "1600px" , cy: "475px" },
+    { name: "AccessPoint" , id: "011" , cx: "1500px" , cy: "350px", type: "AccessPoint" },
+    { name: "AccessPoint" , id: "012" , cx: "1600px" , cy: "475px", type: "AccessPoint" },
     //school
-    { name: "AccessPoint" , id: "013" , cx: "1500px" , cy: "750px" },
-    { name: "AccessPoint" , id: "014" , cx: "1500px" , cy: "825px" },
-    { name: "AccessPoint" , id: "015" , cx: "1600px" , cy: "900px" },
+    { name: "AccessPoint" , id: "013" , cx: "1500px" , cy: "750px", type: "AccessPoint" },
+    { name: "AccessPoint" , id: "014" , cx: "1500px" , cy: "825px", type: "AccessPoint" },
+    { name: "AccessPoint" , id: "015" , cx: "1600px" , cy: "900px", type: "AccessPoint" },
 
     //coffee shop
-    { name: "Building" , id: "016" , cx: "665px" , cy: "350px" },
+    { name: "Building" , id: "016" , cx: "700px" , cy: "350px", type: "Building" },
     //hospital
-    { name: "Building" , id: "017" , cx: "1565px" , cy: "320px" },
+    { name: "Building" , id: "017" , cx: "1600px" , cy: "350px", type: "Building" },
     //school
-    { name: "Building" , id: "018" , cx: "1565px" , cy: "765px" }
+    { name: "Building" , id: "018" , cx: "1600px" , cy: "800px", type: "Building" },
+
+    { name: "" , id: "019" , cx: "0px"    , cy: "320px"  , type: "Border" },
+    { name: "" , id: "020" , cx: "300px"  , cy: "1000px" , type: "Border" },
+    { name: "" , id: "021" , cx: "0px"    , cy: "475px"  , type: "Border" },
+    { name: "" , id: "022" , cx: "2000px" , cy: "475px"  , type: "Border" },
+    { name: "" , id: "023" , cx: "0px"    , cy: "650px"  , type: "Border" },
+    { name: "" , id: "024" , cx: "2000px" , cy: "900px"  , type: "Border" },
+    { name: "" , id: "025" , cx: "600px"  , cy: "0px"    , type: "Border" },
+    { name: "" , id: "026" , cx: "600px"  , cy: "1000px" , type: "Border" },
+    { name: "" , id: "027" , cx: "1200px" , cy: "0px"    , type: "Border" },
+    { name: "" , id: "028" , cx: "1200px" , cy: "1000px" , type: "Border" },
+    { name: "" , id: "029" , cx: "1500px" , cy: "0px"    , type: "Border" },
+    { name: "" , id: "030" , cx: "1500px" , cy: "1000px" , type: "Border" },
+    { name: "" , id: "031" , cx: "1800px" , cy: "0px"    , type: "Border" }
   ],
   //28 edges
   edges: [
-    //railroad    _I_I_
-    { x1: "0px" , y1: "320px" , x2: "75px" , y2: "475px" },
-    { x1: "75px" , y1: "475px" , x2: "150px" , y2: "650px" },
-    { x1: "150px" , y1: "650px" , x2: "300px" , y2: "1000px" },
-    //hstreet 1    _I_I_AC_I_I_AC_I_
-    { x1: "0px" , y1: "475px" , x2: "75px" , y2: "475px" },
-    { x1: "75px" , y1: "475px" , x2: "600px" , y2: "475px" },
-    { x1: "600px" , y1: "475px" , x2: "700px" , y2: "475px" },
-    { x1: "700px" , y1: "475px" , x2: "1200px" , y2: "475px" },
-    { x1: "1200px" , y1: "475px" , x2: "1500px" , y2: "475px" },
-    { x1: "1500px" , y1: "475px" , x2: "1600px" , y2: "475px" },
-    { x1: "1600px" , y1: "475px" , x2: "1800px" , y2: "475px" },
-    { x1: "1800px" , y1: "475px" , x2: "2000px" , y2: "475px" },
-    //hstreet 2   _I_I
-    { x1: "0px" , y1: "650px" , x2: "150px" , y2: "650px" },
-    { x1: "150px" , y1: "650px" , x2: "600px" , y2: "650px" },
-    //hstreet 3   I_I_I_AC_
-    { x1: "600px" , y1: "900px" , x2: "1200px" , y2: "900px" },
-    { x1: "1200px" , y1: "900px" , x2: "1500px" , y2: "900px" },
-    { x1: "1500px" , y1: "900px" , x2: "1600px" , y2: "900px" },
-    { x1: "1600px" , y1: "900px" , x2: "2000px" , y2: "900px" },
-    //vstreet1    _I_I_I_
-    { x1: "600px" , y1: "0px" , x2: "600px" , y2: "475px" },
-    { x1: "600px" , y1: "475px" , x2: "600px" , y2: "600px" },
-    { x1: "600px" , y1: "600px" , x2: "600px" , y2: "900px" },
-    { x1: "600px" , y1: "900px" , x2: "600px" , y2: "1000px" },
-    //vstreet2    _I_I_
-    { x1: "1200px" , y1: "0px" , x2: "1200px" , y2: "475px" },
-    { x1: "1200px" , y1: "475px" , x2: "1200px" , y2: "900px" },
-    { x1: "1200px" , y1: "900px" , x2: "1200px" , y2: "1000px" },
-    //vstreet3    _AC_I_AC_AC_I_
-    { x1: "1500px" , y1: "0px" , x2: "1500px" , y2: "350px" },
-    { x1: "1500px" , y1: "350px" , x2: "1500px" , y2: "475px" },
-    { x1: "1500px" , y1: "475px" , x2: "1500px" , y2: "750px" },
-    { x1: "1500px" , y1: "750px" , x2: "1500px" , y2: "825px" },
-    { x1: "1500px" , y1: "825px" , x2: "1500px" , y2: "900px" },
-    { x1: "1500px" , y1: "900px" , x2: "1500px" , y2: "1000px" },
+    // Vertical Lines
+    { id1:"019" , id2:"000" },
+    { id1:"000" , id2:"005" },
+    { id1:"005" , id2:"020" },
+
+    { id1:"025" , id2:"001" },
+    { id1:"001" , id2:"006" },
+    { id1:"006" , id2:"007" },
+    { id1:"007" , id2:"026" },
+
+    { id1:"027" , id2:"002" },
+    { id1:"002" , id2:"008" },
+    { id1:"008" , id2:"028" },
+
+    { id1:"029" , id2:"011" },
+    { id1:"011" , id2:"003" },
+    { id1:"003" , id2:"013" },
+    { id1:"013" , id2:"014" },
+    { id1:"014" , id2:"009" },
+    { id1:"009" , id2:"030" },
+    { id1:"004" , id2:"031" },
+
+    // Horizontal Lines
+    { id1:"021" , id2:"000" },
+    { id1:"000" , id2:"001" },
+    { id1:"001" , id2:"010" },
+    { id1:"010" , id2:"002" },
+    { id1:"002" , id2:"003" },
+    { id1:"003" , id2:"012" },
+    { id1:"012" , id2:"004" },
+    { id1:"004" , id2:"022" },
+
+    { id1:"023" , id2:"005" },
+    { id1:"005" , id2:"006" },
+
+    { id1:"007" , id2:"008" },
+    { id1:"008" , id2:"009" },
+    { id1:"009" , id2:"015" },
+    { id1:"015" , id2:"024" },
+
+    // Access Points
+    { id1:"010" , id2:"016" },
+    { id1:"011" , id2:"017" },
+    { id1:"012" , id2:"017" },
+    { id1:"013" , id2:"018" },
+    { id1:"014" , id2:"018" },
+    { id1:"015" , id2:"018" }
   ],
   buttons: [
     { name: "placeHold",
@@ -153,7 +177,6 @@ var twoGraph = {
 
 var graphDict = [
   {name: "testingGraph", g: testingGraph},
-  {name: "twoGraph",     g: twoGraph},
   {name: "null",         g: "null"}
 ];
 
@@ -182,9 +205,6 @@ function setGraph(inGraph) {
   }
 
 
-
-
-
   // Adds edge line elements
   for (var i = 0; i < currentGraph.edges.length; i++) {
     //creating the edge
@@ -194,131 +214,144 @@ function setGraph(inGraph) {
         edgeEleClass2 = currentGraph.edges[i].id2 + "edge";
 
     edgeEle.setAttribute("id", edgeEleId);
-    // edgeEle.setAttribute("value", currentGraph.edges[i].value);
     edgeEle.classList.add("edge", edgeEleClass1, edgeEleClass2);
-    edgeEle.setAttribute("x1", currentGraph.edges[i].x1);
-    edgeEle.setAttribute("y1", currentGraph.edges[i].y1);
-    edgeEle.setAttribute("x2", currentGraph.edges[i].x2);
-    edgeEle.setAttribute("y2", currentGraph.edges[i].y2);
+    edgeEle.setAttribute("x1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cx);
+    edgeEle.setAttribute("y1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cy);
+    edgeEle.setAttribute("x2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cx);
+    edgeEle.setAttribute("y2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cy);
 
     svg.appendChild(edgeEle);
   }
 
-
-
-
-
   // Adds node group elements and menus
   for (var i = 0; i < currentGraph.nodes.length; i++) {
     // Creates and appends node with text element
-    //draws circles
-    if(currentGraph.nodes[i].name == "Intersection"){
-    //creating the node
-    var nodeCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle"),
-        nodeId = "node" + currentGraph.nodes[i].id;
-        nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
-        nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    var nodeShape, nodeId, nodeText, nodeG;
 
-    //the node's attributes
-    nodeCircle.setAttribute("id", nodeId);
-    nodeCircle.classList.add("node");
-    nodeCircle.setAttribute("cx", currentGraph.nodes[i].cx);
-    nodeCircle.setAttribute("cy", currentGraph.nodes[i].cy);
-    nodeCircle.setAttribute("r", "35");
-    nodeCircle.setAttribute("stroke", "rgb(0, 0, 0)");
-    nodeCircle.setAttribute("stroke-width", "3");
-    nodeCircle.setAttribute("fill", "rgb(255, 255, 255)");
+    //draws intersections
+    if(currentGraph.nodes[i].type == "Intersection"){
+    //creating the node
+      nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "circle"),
+      nodeId = "node" + currentGraph.nodes[i].id;
+      nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
+      nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      //the node's attributes
+      nodeShape.setAttribute("id", nodeId);
+      nodeShape.classList.add("node");
+      nodeShape.setAttribute("cx", currentGraph.nodes[i].cx);
+      nodeShape.setAttribute("cy", currentGraph.nodes[i].cy);
+      nodeShape.setAttribute("r", "35");
+      nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
+      nodeShape.setAttribute("stroke-width", "3");
+      nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
+    }
+
+    //draws borders
+    else if(currentGraph.nodes[i].type == "Border"){
+      //creating the node
+      nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "circle"),
+      nodeId = "node" + currentGraph.nodes[i].id;
+      nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
+      nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      //the node's attributes
+      nodeShape.setAttribute("id", nodeId);
+      nodeShape.classList.add("node");
+      nodeShape.setAttribute("cx", currentGraph.nodes[i].cx);
+      nodeShape.setAttribute("cy", currentGraph.nodes[i].cy);
+      nodeShape.setAttribute("r", "15");
+      nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
+      nodeShape.setAttribute("stroke-width", "3");
+      nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
+    }
+
+    //draws access points
+    else if(currentGraph.nodes[i].type == "AccessPoint"){
+      //creating the node
+      nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "circle"),
+      nodeId = "node" + currentGraph.nodes[i].id;
+      nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
+      nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      //the node's attributes
+      nodeShape.setAttribute("id", nodeId);
+      nodeShape.classList.add("node");
+      nodeShape.setAttribute("cx", currentGraph.nodes[i].cx);
+      nodeShape.setAttribute("cy", currentGraph.nodes[i].cy);
+      nodeShape.setAttribute("r", "25");
+      nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
+      nodeShape.setAttribute("stroke-width", "3");
+      nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
+    }
+
+    //draws squares
+    else {
+      //creating the node
+          nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "rect"),
+          nodeId = "node" + currentGraph.nodes[i].id;
+          nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
+          nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      //the node's attributes
+      nodeShape.setAttribute("id", nodeId);
+      nodeShape.classList.add("node");
+      nodeShape.setAttribute("x", parseInt(currentGraph.nodes[i].cx) - 35);
+      nodeShape.setAttribute("y", parseInt(currentGraph.nodes[i].cy) - 35);
+      nodeShape.setAttribute("width", "70");
+      nodeShape.setAttribute("height", "70");
+      nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
+      nodeShape.setAttribute("stroke-width", "3");
+      nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
+    }
+
 
 /*
-    //node text label
-    nodeText.classList.add("nodeLabel");
-    nodeText.setAttribute("x", currentGraph.nodes[i].cx);
-    nodeText.setAttribute("y", currentGraph.nodes[i].cy);
-    nodeText.setAttribute("fill", "rgb(0, 0, 0)");
-    nodeText.innerHTML = currentGraph.nodes[i].name;
-    */
+    //draws ellipses
+    else if (currentGraph.nodes[i].type == "AccessPoint"){
+      //creating the node
+          nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "ellipse"),
+          nodeId = "node" + currentGraph.nodes[i].id;
+          nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
+          nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
-    nodeG.appendChild(nodeCircle);
-    nodeG.appendChild(nodeText);
-
-    svg.appendChild(nodeG);
-  }
-  //draws squares
-  else if(currentGraph.nodes[i].name == "Building"){
-    //creating the node
-    var nodeRect = document.createElementNS("http://www.w3.org/2000/svg", "rect"),
-        nodeId = "node" + currentGraph.nodes[i].id;
-        nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
-        nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
-
-    //the node's attributes
-    nodeRect.setAttribute("id", nodeId);
-    nodeRect.classList.add("node");
-    nodeRect.setAttribute("x", currentGraph.nodes[i].cx);
-    nodeRect.setAttribute("y", currentGraph.nodes[i].cy);
-    nodeRect.setAttribute("width", "70");
-    nodeRect.setAttribute("height", "70");
-    nodeRect.setAttribute("stroke", "rgb(0, 0, 0)");
-    nodeRect.setAttribute("stroke-width", "3");
-    nodeRect.setAttribute("fill", "rgb(255, 255, 255)");
-
-/*
-    //node text label
-    nodeText.classList.add("nodeLabel");
-    nodeText.setAttribute("x", currentGraph.nodes[i].cx);
-    nodeText.setAttribute("y", currentGraph.nodes[i].cy);
-    nodeText.setAttribute("fill", "rgb(0, 0, 0)");
-    nodeText.innerHTML = currentGraph.nodes[i].name;
+      //the node's attributes
+      nodeShape.setAttribute("id", nodeId);
+      nodeShape.classList.add("node");
+      nodeShape.setAttribute("cx", currentGraph.nodes[i].cx);
+      nodeShape.setAttribute("cy", currentGraph.nodes[i].cy);
+      nodeShape.setAttribute("rx", "50");
+      nodeShape.setAttribute("ry", "25");
+      nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
+      nodeShape.setAttribute("stroke-width", "3");
+      nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
+    }
 */
 
-    nodeG.appendChild(nodeRect);
-    nodeG.appendChild(nodeText);
-
-    svg.appendChild(nodeG);
-  }
-  //draws ellipses
-  else{
-    //creating the node
-    var nodeEllipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse"),
-        nodeId = "node" + currentGraph.nodes[i].id;
-        nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
-        nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
-
-    //the node's attributes
-    nodeEllipse.setAttribute("id", nodeId);
-    nodeEllipse.classList.add("node");
-    nodeEllipse.setAttribute("cx", currentGraph.nodes[i].cx);
-    nodeEllipse.setAttribute("cy", currentGraph.nodes[i].cy);
-    nodeEllipse.setAttribute("rx", "50");
-    nodeEllipse.setAttribute("ry", "25");
-    nodeEllipse.setAttribute("stroke", "rgb(0, 0, 0)");
-    nodeEllipse.setAttribute("stroke-width", "3");
-    nodeEllipse.setAttribute("fill", "rgb(255, 255, 255)");
-
-/*
-    //node text label
     nodeText.classList.add("nodeLabel");
     nodeText.setAttribute("x", currentGraph.nodes[i].cx);
     nodeText.setAttribute("y", currentGraph.nodes[i].cy);
     nodeText.setAttribute("fill", "rgb(0, 0, 0)");
-    nodeText.innerHTML = currentGraph.nodes[i].name;
-*/
+    nodeText.innerHTML = currentGraph.nodes[i].id;
 
-    nodeG.appendChild(nodeEllipse);
+    nodeG.appendChild(nodeShape);
     nodeG.appendChild(nodeText);
 
     svg.appendChild(nodeG);
-  }
-
     // Creates Menu Div Template
     var menuTemplate = document.createElement("div"),
         menuId = "node" + currentGraph.nodes[i].id + "Menu",
-        innerP = document.createElement("p");
+        innerP = document.createElement("p"),
+        bound = nodeShape.getBoundingClientRect(),
+        boundCenter;
+
     innerP.innerHTML = "Status Uninitialized";
     menuTemplate.setAttribute("id", menuId);
     menuTemplate.classList.add("menu");
-    menuTemplate.style.left = "calc(" + currentGraph.nodes[i].cx + " + 15px)";
-    menuTemplate.style.top = "calc(" + currentGraph.nodes[i].cy + " - 10px)";
+    boundCenter = (bound.right - bound.left) / 2;
+    menuTemplate.style.left = (bound.left + boundCenter + 40) + "px";
+    menuTemplate.style.top = (bound.top - 10) + "px";
+    menuMove(currentGraph.nodes[i].id);
     menuTemplate.appendChild(innerP);
 
     // Appends Buttons to Menu Div Template
@@ -334,4 +367,17 @@ function setGraph(inGraph) {
     }
     body.appendChild(menuTemplate);
   }
+}
+
+function menuMove(id) {
+  window.addEventListener("resize", function() {
+    var nodeEle = document.getElementById("node" + id),
+        menuEle = document.getElementById("node" + id + "Menu"),
+        nodeBox, nodeCenterVal;
+
+    nodeBox = nodeEle.getBoundingClientRect();
+    nodeCenterVal = (nodeBox.right - nodeBox.left) / 2;
+    menuEle.style.left = (nodeBox.left + nodeCenterVal + 40) + "px";
+    menuEle.style.top = nodeBox.top + "px";
+  })
 }
