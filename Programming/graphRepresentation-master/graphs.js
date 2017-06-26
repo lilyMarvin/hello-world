@@ -27,11 +27,11 @@ var testingGraph = {
     { name: "AccessPoint" , id: "015" , cx: "1600px" , cy: "900px" },
 
     //coffee shop
-    { name: "Building" , id: "016" , x: "665px" , y: "350px" },
+    { name: "Building" , id: "016" , cx: "665px" , cy: "350px" },
     //hospital
-    { name: "Building" , id: "017" , x: "1565px" , y: "320px" },
+    { name: "Building" , id: "017" , cx: "1565px" , cy: "320px" },
     //school
-    { name: "Building" , id: "018" , x: "1565px" , y: "765px" }
+    { name: "Building" , id: "018" , cx: "1565px" , cy: "765px" }
   ],
   //28 edges
   edges: [
@@ -254,8 +254,8 @@ function setGraph(inGraph) {
     //the node's attributes
     nodeRect.setAttribute("id", nodeId);
     nodeRect.classList.add("node");
-    nodeRect.setAttribute("x", currentGraph.nodes[i].x);
-    nodeRect.setAttribute("y", currentGraph.nodes[i].y);
+    nodeRect.setAttribute("x", currentGraph.nodes[i].cx);
+    nodeRect.setAttribute("y", currentGraph.nodes[i].cy);
     nodeRect.setAttribute("width", "70");
     nodeRect.setAttribute("height", "70");
     nodeRect.setAttribute("stroke", "rgb(0, 0, 0)");
@@ -317,8 +317,8 @@ function setGraph(inGraph) {
     innerP.innerHTML = "Status Uninitialized";
     menuTemplate.setAttribute("id", menuId);
     menuTemplate.classList.add("menu");
-    menuTemplate.style.left = "calc(" + currentGraph.nodes[i].cx + " + 55px)";
-    menuTemplate.style.top = "calc(" + currentGraph.nodes[i].cy + " - 15px)";
+    menuTemplate.style.left = "calc(" + currentGraph.nodes[i].cx + " + 15px)";
+    menuTemplate.style.top = "calc(" + currentGraph.nodes[i].cy + " - 10px)";
     menuTemplate.appendChild(innerP);
 
     // Appends Buttons to Menu Div Template

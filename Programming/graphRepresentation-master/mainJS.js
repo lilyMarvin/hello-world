@@ -39,7 +39,7 @@ function initializeListeners() {
     addMenuButtonHover(menuButtonList[i]);
   }
 
-    // "RESOURCES" DROPDOWN
+  // "RESOURCES" DROPDOWN
   // "Reset" Button
   document.getElementById("resetButton").addEventListener("click", function() {
     resetToDefault();
@@ -50,13 +50,13 @@ function initializeListeners() {
   });
   // "Toggle Edges" Button
   document.getElementById("toggleEdgesButton").addEventListener("click", function() {
-        toggleEdges();
+    toggleEdges();
   });
 
 
 
 
-    // "THEMES" DROPDOWN
+  // "THEMES" DROPDOWN
   // "Default" Theme Button
   document.getElementById("setDefaultTheme").addEventListener("click", function() {
     setTheme(defaultTheme);
@@ -68,6 +68,27 @@ function initializeListeners() {
   // "Clear" Theme Button
   document.getElementById("setClearTheme").addEventListener("click", function() {
     setTheme(clearTheme);
+  });
+
+
+
+
+  // "MAP OPTIONS" DROPDOWN
+  // "Move Up" Button
+  document.getElementById("moveUp").addEventListener("click", function() {
+    shiftUp();
+  });
+  // "Move Down" Button
+  document.getElementById("moveDown").addEventListener("click", function() {
+    shiftDown();
+  });
+  // "Move Left" Button
+  document.getElementById("moveLeft").addEventListener("click", function() {
+    shiftLeft();
+  });
+  // "Move Right" Button
+  document.getElementById("moveRight").addEventListener("click", function() {
+    shiftRight();
   });
 }
 
@@ -159,7 +180,7 @@ function resetToDefault() {
 
       nodeEle.setAttribute("r", "35");
 
-      if(currentGraph.nodes[i].name == "AccessPoint"){
+      if(currentGraph.nodes[i].name == "AcessPoint"){
       nodeEle.setAttribute("rx", "50");
       nodeEle.setAttribute("ry", "25");
       }
@@ -181,7 +202,7 @@ function addNodeHover(nodeId, node) {
   par.addEventListener("mouseover", function() {
     node.setAttribute("r","45");
 
-    if(currentGraph.nodes[nodeId].name == "AccessPoint"){
+    if(currentGraph.nodes[nodeId].name == "AcessPoint"){
     node.setAttribute("rx", "70");
     node.setAttribute("ry", "35");
   }
@@ -198,7 +219,7 @@ function addNodeHover(nodeId, node) {
     if(menu.style.visibility == "hidden") {
       node.setAttribute("r", "35");
 
-      if(currentGraph.nodes[nodeId].name == "AccessPoint"){
+      if(currentGraph.nodes[nodeId].name == "AcessPoint"){
       node.setAttribute("rx", "50");
       node.setAttribute("ry", "25");
     }
