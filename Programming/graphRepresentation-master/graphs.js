@@ -1,39 +1,37 @@
 // File To Store Graphs, ID VALUES MUST BE A 3-DIGIT INT
 var testingGraph = {
-  //19 nodes, 10 intersections, 6 access points, 3 buildings
+  //32 nodes, 10 intersections, 6 access points, 3 buildings
   nodes: [
     //level 1
-    { name: "Intersection" , id: "000" , cx: "75px" , cy: "475px", type: "Intersection" },
-    { name: "Intersection" , id: "001" , cx: "600px" , cy: "475px", type: "Intersection" },
-    { name: "Intersection" , id: "002" , cx: "1200px" , cy: "475px", type: "Intersection" },
-    { name: "Intersection" , id: "003" , cx: "1500px" , cy: "475px", type: "Intersection" },
-    { name: "Intersection" , id: "004" , cx: "1800px" , cy: "475px", type: "Intersection" },
+    { name: "" , id: "000" , cx: "75px" , cy: "475px", type: "PoweredIntersection" },
+    { name: "" , id: "001" , cx: "600px" , cy: "475px", type: "PoweredIntersection" },
+    { name: "" , id: "002" , cx: "1200px" , cy: "475px", type: "UnpoweredIntersection" },
+    { name: "" , id: "003" , cx: "1500px" , cy: "475px", type: "UnpoweredIntersection" },
+    { name: "" , id: "004" , cx: "1800px" , cy: "475px", type: "UnpoweredIntersection" },
     //level 2
-    { name: "Intersection" , id: "005" , cx: "150px" , cy: "650px", type: "Intersection" },
-    { name: "Intersection" , id: "006" , cx: "600px" , cy: "650px", type: "Intersection" },
+    { name: "" , id: "005" , cx: "150px" , cy: "650px", type: "PoweredIntersection" },
+    { name: "" , id: "006" , cx: "600px" , cy: "650px", type: "PoweredIntersection" },
     //level 3
-    { name: "Intersection" , id: "007" , cx: "600px" , cy: "900px", type: "Intersection" },
-    { name: "Intersection" , id: "008" , cx: "1200px" , cy: "900px", type: "Intersection" },
-    { name: "Intersection" , id: "009" , cx: "1500px" , cy: "900px", type: "Intersection" },
+    { name: "" , id: "007" , cx: "600px" , cy: "900px", type: "PoweredIntersection" },
+    { name: "" , id: "008" , cx: "1200px" , cy: "900px", type: "UnpoweredIntersection" },
+    { name: "" , id: "009" , cx: "1500px" , cy: "900px", type: "UnpoweredIntersection" },
 
     //coffee shop
-    { name: "AccessPoint" , id: "010" , cx: "700px" , cy: "475px", type: "AccessPoint" },
+    { name: "" , id: "010" , cx: "700px" , cy: "475px", type: "AccessPoint" },
     //hospital
-    { name: "AccessPoint" , id: "011" , cx: "1500px" , cy: "350px", type: "AccessPoint" },
-    { name: "AccessPoint" , id: "012" , cx: "1600px" , cy: "475px", type: "AccessPoint" },
+    { name: "" , id: "011" , cx: "1500px" , cy: "350px", type: "AccessPoint" },
+    { name: "" , id: "012" , cx: "1600px" , cy: "475px", type: "AccessPoint" },
     //school
-    { name: "AccessPoint" , id: "013" , cx: "1500px" , cy: "750px", type: "AccessPoint" },
-    { name: "AccessPoint" , id: "014" , cx: "1500px" , cy: "825px", type: "AccessPoint" },
-    { name: "AccessPoint" , id: "015" , cx: "1600px" , cy: "900px", type: "AccessPoint" },
+    { name: "" , id: "013" , cx: "1500px" , cy: "750px", type: "AccessPoint" },
+    { name: "" , id: "014" , cx: "1500px" , cy: "825px", type: "AccessPoint" },
+    { name: "" , id: "015" , cx: "1600px" , cy: "900px", type: "AccessPoint" },
 
-    //coffee shop
-    { name: "Building" , id: "016" , cx: "700px" , cy: "350px", type: "Building" },
-    //hospital
-    { name: "Building" , id: "017" , cx: "1600px" , cy: "350px", type: "Building" },
-    //school
-    { name: "Building" , id: "018" , cx: "1600px" , cy: "800px", type: "Building" },
 
-    { name: "" , id: "019" , cx: "0px"    , cy: "320px"  , type: "Border" },
+    { name: "CoffeeShop" , id: "016" , cx: "700px" , cy: "350px", type: "Building" },
+    { name: "Hospital" , id: "017" , cx: "1600px" , cy: "350px", type: "Building" },
+    { name: "School" , id: "018" , cx: "1600px" , cy: "800px", type: "Building" },
+
+    { name: "" , id: "019" , cx: "0px"    , cy: "300px"  , type: "Border" },
     { name: "" , id: "020" , cx: "300px"  , cy: "1000px" , type: "Border" },
     { name: "" , id: "021" , cx: "0px"    , cy: "475px"  , type: "Border" },
     { name: "" , id: "022" , cx: "2000px" , cy: "475px"  , type: "Border" },
@@ -47,13 +45,14 @@ var testingGraph = {
     { name: "" , id: "030" , cx: "1500px" , cy: "1000px" , type: "Border" },
     { name: "" , id: "031" , cx: "1800px" , cy: "0px"    , type: "Border" }
   ],
-  //28 edges
+  //37 edges
   edges: [
-    // Vertical Lines
+    //Diagonal Lines
     { id1:"019" , id2:"000" },
     { id1:"000" , id2:"005" },
     { id1:"005" , id2:"020" },
 
+    // Vertical Lines
     { id1:"025" , id2:"001" },
     { id1:"001" , id2:"006" },
     { id1:"006" , id2:"007" },
@@ -229,7 +228,7 @@ function setGraph(inGraph) {
     var nodeShape, nodeId, nodeText, nodeG;
 
     //draws intersections
-    if(currentGraph.nodes[i].type == "Intersection"){
+    if(currentGraph.nodes[i].type == "UnpoweredIntersection" || currentGraph.nodes[i].type == "PoweredIntersection"){
     //creating the node
       nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "circle"),
       nodeId = "node" + currentGraph.nodes[i].id;
@@ -241,7 +240,7 @@ function setGraph(inGraph) {
       nodeShape.classList.add("node");
       nodeShape.setAttribute("cx", currentGraph.nodes[i].cx);
       nodeShape.setAttribute("cy", currentGraph.nodes[i].cy);
-      nodeShape.setAttribute("r", "35");
+      nodeShape.setAttribute("r", "30");
       nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
       nodeShape.setAttribute("stroke-width", "3");
       nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
@@ -279,7 +278,7 @@ function setGraph(inGraph) {
       nodeShape.classList.add("node");
       nodeShape.setAttribute("cx", currentGraph.nodes[i].cx);
       nodeShape.setAttribute("cy", currentGraph.nodes[i].cy);
-      nodeShape.setAttribute("r", "25");
+      nodeShape.setAttribute("r", "20");
       nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
       nodeShape.setAttribute("stroke-width", "3");
       nodeShape.setAttribute("fill", "rgb(255, 255, 255)");

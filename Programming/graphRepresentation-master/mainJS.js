@@ -89,29 +89,29 @@ function toggleEdges() {
 
 
 //setting the color for the node
-function setColor(nodeId, val) {
+function setColor(nodeId, val, type) {
   var menu = document.getElementById("node" + nodeId + "Menu");
   var node = document.getElementById("node" + nodeId);
   menu.firstElementChild.innerHTML = "Status: " + theme.levelNam[val];
   currentGraph.nodeStates[nodeId] = val;
 
   //switch statement to set color
-  if (node.type == "Intersection") {
+  if (type == "PoweredIntersection") {
+    node.setAttribute("fill", "rgb(0,0,255)");
+    node.setAttribute("stroke", "rgb(0,0,0)");
+  }
+  else if (type == "UnpoweredIntersection"){
     node.setAttribute("fill", "rgb(255,0,0)");
     node.setAttribute("stroke", "rgb(0,0,0)");
   }
-  else if (node.type == "Border"){
-      node.setAttribute("fill", "rgb(0,255,0)");
-      node.setAttribute("stroke", "rgb(0,0,0)");
-    }
-    else if (node.type == "AccessPoint"){
-      node.setAttribute("fill", "rgb(0,0,255)");
-      node.setAttribute("stroke", "rgb(0,0,0)");
-    }
-    else{
-      node.setAttribute("fill", "rgb(175,175,175)");
-      node.setAttribute("stroke", "rgb(0,0,0)");
-    }
+  else if (type == "AccessPoint"){
+    node.setAttribute("fill", "rgb(0,255,0)");
+    node.setAttribute("stroke", "rgb(0,0,0)");
+  }
+  else{
+    node.setAttribute("fill", "rgb(175,175,175)");
+    node.setAttribute("stroke", "rgb(0,0,0)");
+  }
 
   node.nextElementSibling.setAttribute("fill", theme.fontFill[val]);
 
@@ -164,8 +164,8 @@ function setAdjEdgeColors(nodeId, colorPri) {
 //resets everything to its default
 function resetToDefault() {
   var nodes = document.getElementsByClassName("node");
-  for (var i = 0; i < nodes.length; i++) {
-    setColor(nodes[i].id.substr(4,3), 0);
+  for (var i = 0; i < currentGraph.nodes.length; i++) {
+    setColor(nodes[i].id.substr(4,3), 0, currentGraph.nodes[i].type);
   }
 
   var menus = document.getElementsByClassName("menu");
@@ -175,14 +175,14 @@ function resetToDefault() {
       var menuId = menus[i].id.substr(4,3);
       var nodeEle = document.getElementById("node" + menuId);
 
-      if(currentGraph.nodes[i].type == "Intersection"){
-      nodeEle.setAttribute("r", "35");
+      if(currentGraph.nodes[i].type == "UnpoweredIntersection" || currentGraph.nodes[i].type == "PoweredIntersection"){
+        nodeEle.setAttribute("r", "30");
       }
       if(currentGraph.nodes[i].type == "Border"){
-      nodeEle.setAttribute("r", "15");
+        nodeEle.setAttribute("r", "15");
       }
       else{
-      nodeEle.setAttribute("r", "25");
+        nodeEle.setAttribute("r", "20");
       }
 
       nodeEle.setAttribute("width", "70");
@@ -204,7 +204,8 @@ function addNodeHover(nodeId, node) {
 
   par.addEventListener("mouseover", function() {
     if(menu.style.visibility != "visible") {
-      if (currentGraph.nodes[nodeId].type == "AccessPoint" || currentGraph.nodes[nodeId].type == "Intersection" || currentGraph.nodes[nodeId].type == "Border") {
+      if (currentGraph.nodes[nodeId].type == "AccessPoint" || currentGraph.nodes[nodeId].type == "UnpoweredIntersection"
+          || currentGraph.nodes[nodeId].type == "PoweredIntersection" || currentGraph.nodes[nodeId].type == "Border") {
         node.setAttribute("r", parseInt(node.getAttribute("r")) + incVal);
       }
       else {
@@ -221,7 +222,8 @@ function addNodeHover(nodeId, node) {
 
   par.addEventListener("mouseout", function() {
     if(menu.style.visibility != "visible") {
-      if (currentGraph.nodes[nodeId].type == "AccessPoint" || currentGraph.nodes[nodeId].type == "Intersection" || currentGraph.nodes[nodeId].type == "Border") {
+      if (currentGraph.nodes[nodeId].type == "AccessPoint" || currentGraph.nodes[nodeId].type == "UnpoweredIntersection"
+          || currentGraph.nodes[nodeId].type == "PoweredIntersection" || currentGraph.nodes[nodeId].type == "Border") {
         node.setAttribute("r", parseInt(node.getAttribute("r")) - incVal);
       }
       else {
