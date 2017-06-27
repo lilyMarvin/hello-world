@@ -25,8 +25,16 @@ var testingGraph = {
     { name: "" , id: "013" , cx: "1500px" , cy: "750px", type: "AccessPoint" },
     { name: "" , id: "014" , cx: "1500px" , cy: "825px", type: "AccessPoint" },
     { name: "" , id: "015" , cx: "1600px" , cy: "900px", type: "AccessPoint" },
+    //power station
+    { name: "" , id: "032" , cx: "400px" , cy: "475px", type: "AccessPoint" },
+    { name: "" , id: "033" , cx: "600px" , cy: "350px", type: "AccessPoint" },
+    //train station
+    { name: "" , id: "034" , cx: "300px" , cy: "650px", type: "AccessPoint" },
+    { name: "" , id: "035" , cx: "215px" , cy: "810px", type: "AccessPoint" },
 
 
+    { name: "TrainStation" , id: "036" , cx: "300px" , cy: "740px", type: "Building" },
+    { name: "PowerStation" , id: "037" , cx: "400px" , cy: "350px", type: "Building" },
     { name: "CoffeeShop" , id: "016" , cx: "700px" , cy: "350px", type: "Building" },
     { name: "Hospital" , id: "017" , cx: "1600px" , cy: "350px", type: "Building" },
     { name: "School" , id: "018" , cx: "1600px" , cy: "800px", type: "Building" },
@@ -50,7 +58,8 @@ var testingGraph = {
     //Diagonal Lines
     { id1:"019" , id2:"000" },
     { id1:"000" , id2:"005" },
-    { id1:"005" , id2:"020" },
+    { id1:"005" , id2:"035" },
+    { id1:"035" , id2:"020" },
 
     // Vertical Lines
     { id1:"025" , id2:"001" },
@@ -94,6 +103,10 @@ var testingGraph = {
     { id1:"012" , id2:"017" },
     { id1:"013" , id2:"018" },
     { id1:"014" , id2:"018" },
+    { id1:"037" , id2:"032" },
+    { id1:"037" , id2:"033" },
+    { id1:"035" , id2:"036" },
+    { id1:"036" , id2:"034" },
     { id1:"015" , id2:"018" }
   ],
   buttons: [
