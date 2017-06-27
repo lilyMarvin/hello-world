@@ -1,18 +1,18 @@
 // File To Store Graphs, ID VALUES MUST BE A 3-DIGIT INT
 var testingGraph = {
-  //32 nodes, 10 intersections, 6 access points, 3 buildings
+  //41 nodes, 10 intersections, 6 access points, 3 buildings
   nodes: [
     //level 1
     { name: "" , id: "000" , cx: "75px" , cy: "475px", type: "PoweredIntersection" },
     { name: "" , id: "001" , cx: "600px" , cy: "475px", type: "PoweredIntersection" },
-    { name: "" , id: "002" , cx: "1200px" , cy: "475px", type: "UnpoweredIntersection" },
+    { name: "" , id: "002" , cx: "1200px" , cy: "475px", type: "PoweredIntersection" },
     { name: "" , id: "003" , cx: "1500px" , cy: "475px", type: "UnpoweredIntersection" },
     { name: "" , id: "004" , cx: "1800px" , cy: "475px", type: "UnpoweredIntersection" },
     //level 2
     { name: "" , id: "005" , cx: "150px" , cy: "650px", type: "PoweredIntersection" },
     { name: "" , id: "006" , cx: "600px" , cy: "650px", type: "PoweredIntersection" },
     //level 3
-    { name: "" , id: "007" , cx: "600px" , cy: "900px", type: "PoweredIntersection" },
+    { name: "" , id: "007" , cx: "600px" , cy: "900px", type: "UnpoweredIntersection" },
     { name: "" , id: "008" , cx: "1200px" , cy: "900px", type: "UnpoweredIntersection" },
     { name: "" , id: "009" , cx: "1500px" , cy: "900px", type: "UnpoweredIntersection" },
 
@@ -21,93 +21,136 @@ var testingGraph = {
     //hospital
     { name: "" , id: "011" , cx: "1500px" , cy: "350px", type: "AccessPoint" },
     { name: "" , id: "012" , cx: "1600px" , cy: "475px", type: "AccessPoint" },
-    //school
+    //middle school
     { name: "" , id: "013" , cx: "1500px" , cy: "750px", type: "AccessPoint" },
     { name: "" , id: "014" , cx: "1500px" , cy: "825px", type: "AccessPoint" },
     { name: "" , id: "015" , cx: "1600px" , cy: "900px", type: "AccessPoint" },
     //power station
-    { name: "" , id: "032" , cx: "400px" , cy: "475px", type: "AccessPoint" },
-    { name: "" , id: "033" , cx: "600px" , cy: "350px", type: "AccessPoint" },
+    { name: "" , id: "016" , cx: "380px" , cy: "475px", type: "AccessPoint" },
+    { name: "" , id: "017" , cx: "600px" , cy: "300px", type: "AccessPoint" },
     //train station
-    { name: "" , id: "034" , cx: "300px" , cy: "650px", type: "AccessPoint" },
-    { name: "" , id: "035" , cx: "215px" , cy: "810px", type: "AccessPoint" },
+    { name: "" , id: "018" , cx: "300px" , cy: "650px", type: "AccessPoint" },
+    { name: "" , id: "019" , cx: "215px" , cy: "810px", type: "AccessPoint" },
+    //USM
+    { name: "" , id: "020" , cx: "900px" , cy: "900px", type: "AccessPoint" },
+    { name: "" , id: "021" , cx: "1200px" , cy: "650px", type: "AccessPoint" },
 
 
-    { name: "TrainStation" , id: "036" , cx: "300px" , cy: "740px", type: "Building" },
-    { name: "PowerStation" , id: "037" , cx: "400px" , cy: "350px", type: "Building" },
-    { name: "CoffeeShop" , id: "016" , cx: "700px" , cy: "350px", type: "Building" },
-    { name: "Hospital" , id: "017" , cx: "1600px" , cy: "350px", type: "Building" },
-    { name: "School" , id: "018" , cx: "1600px" , cy: "800px", type: "Building" },
+    { name: "" , id: "022" , cx: "300px" , cy: "740px", type: "TrainStation" },
 
-    { name: "" , id: "019" , cx: "0px"    , cy: "300px"  , type: "Border" },
-    { name: "" , id: "020" , cx: "300px"  , cy: "1000px" , type: "Border" },
-    { name: "" , id: "021" , cx: "0px"    , cy: "475px"  , type: "Border" },
-    { name: "" , id: "022" , cx: "2000px" , cy: "475px"  , type: "Border" },
-    { name: "" , id: "023" , cx: "0px"    , cy: "650px"  , type: "Border" },
-    { name: "" , id: "024" , cx: "2000px" , cy: "900px"  , type: "Border" },
-    { name: "" , id: "025" , cx: "600px"  , cy: "0px"    , type: "Border" },
-    { name: "" , id: "026" , cx: "600px"  , cy: "1000px" , type: "Border" },
-    { name: "" , id: "027" , cx: "1200px" , cy: "0px"    , type: "Border" },
-    { name: "" , id: "028" , cx: "1200px" , cy: "1000px" , type: "Border" },
-    { name: "" , id: "029" , cx: "1500px" , cy: "0px"    , type: "Border" },
-    { name: "" , id: "030" , cx: "1500px" , cy: "1000px" , type: "Border" },
-    { name: "" , id: "031" , cx: "1800px" , cy: "0px"    , type: "Border" }
+    { name: "" , id: "023" , cx: "375px" , cy: "300px", type: "PowerStation" },
+
+    //CoffeeShop
+    { name: "" , id: "024" , cx: "700px" , cy: "350px", type: "Business" },
+    //Hospital
+    { name: "" , id: "025" , cx: "1600px" , cy: "350px", type: "Business" },
+    //MiddleSchool
+    { name: "" , id: "026" , cx: "1600px" , cy: "800px", type: "Business" },
+    //USM
+    { name: "" , id: "027" , cx: "900px" , cy: "650px", type: "Business" },
+
+    { name: "" , id: "028" , cx: "0px"    , cy: "300px"  , type: "Border" },
+    { name: "" , id: "029" , cx: "300px"  , cy: "1000px" , type: "Border" },
+    { name: "" , id: "030" , cx: "0px"    , cy: "475px"  , type: "Border" },
+    { name: "" , id: "031" , cx: "2000px" , cy: "475px"  , type: "Border" },
+    { name: "" , id: "032" , cx: "0px"    , cy: "650px"  , type: "Border" },
+    { name: "" , id: "033" , cx: "2000px" , cy: "900px"  , type: "Border" },
+    { name: "" , id: "034" , cx: "600px"  , cy: "0px"    , type: "Border" },
+    { name: "" , id: "035" , cx: "600px"  , cy: "1000px" , type: "Border" },
+    { name: "" , id: "036" , cx: "1200px" , cy: "0px"    , type: "Border" },
+    { name: "" , id: "037" , cx: "1200px" , cy: "1000px" , type: "Border" },
+    { name: "" , id: "038" , cx: "1500px" , cy: "0px"    , type: "Border" },
+    { name: "" , id: "039" , cx: "1500px" , cy: "1000px" , type: "Border" },
+    { name: "" , id: "040" , cx: "1800px" , cy: "0px"    , type: "Border" }
   ],
-  //37 edges
+
+
+  //39 edges
   edges: [
+    //RAILROADS
     //Diagonal Lines
-    { id1:"019" , id2:"000" },
-    { id1:"000" , id2:"005" },
-    { id1:"005" , id2:"035" },
-    { id1:"035" , id2:"020" },
+    { id1: "028" , id2: "000" , type: "Railroad" },
+    { id1: "000" , id2: "005" , type: "Railroad" },
+    { id1: "005" , id2: "019" , type: "Railroad" },
+    { id1: "019" , id2: "029" , type: "Railroad" },
 
+    //POWERLINES
+    { id1: "023" , id2: "016" , type: "PowerLine" },
+    { id1: "016" , id2: "000" , type: "PowerLine" },
+    { id1: "000" , id2: "030" , type: "PowerLine" },
+    { id1: "016" , id2: "001" , type: "PowerLine" },
+    { id1: "001" , id2: "006" , type: "PowerLine" },
+    { id1: "006" , id2: "018" , type: "PowerLine" },
+    { id1: "018" , id2: "005" , type: "PowerLine" },
+    { id1: "005" , id2: "032" , type: "PowerLine" },
+    { id1: "001" , id2: "010" , type: "PowerLine" },
+    { id1: "010" , id2: "002" , type: "PowerLine" },
+    { id1: "002" , id2: "012" , type: "PowerLine" },
+    { id1: "006" , id2: "027" , type: "PowerLine" },
+    { id1: "002" , id2: "027" , type: "PowerLine" },
+    { id1: "022" , id2: "007" , type: "PowerLine" },
+    { id1: "007" , id2: "015" , type: "PowerLine" },
+
+    //ROADS
     // Vertical Lines
-    { id1:"025" , id2:"001" },
-    { id1:"001" , id2:"006" },
-    { id1:"006" , id2:"007" },
-    { id1:"007" , id2:"026" },
+    { id1: "034" , id2: "017" , type: "Road" },
+    { id1: "017" , id2: "001" , type: "Road" },
+    { id1: "001" , id2: "006" , type: "Road" },
+    { id1: "006" , id2: "007" , type: "Road" },
+    { id1: "007" , id2: "035" , type: "Road" },
 
-    { id1:"027" , id2:"002" },
-    { id1:"002" , id2:"008" },
-    { id1:"008" , id2:"028" },
+    { id1: "036" , id2: "002" , type: "Road" },
+    { id1: "002" , id2: "021" , type: "Road" },
+    { id1: "021" , id2: "008" , type: "Road" },
+    { id1: "008" , id2: "037" , type: "Road" },
 
-    { id1:"029" , id2:"011" },
-    { id1:"011" , id2:"003" },
-    { id1:"003" , id2:"013" },
-    { id1:"013" , id2:"014" },
-    { id1:"014" , id2:"009" },
-    { id1:"009" , id2:"030" },
-    { id1:"004" , id2:"031" },
+    { id1: "038" , id2: "011" , type: "Road" },
+    { id1: "011" , id2: "003" , type: "Road" },
+    { id1: "003" , id2: "013" , type: "Road" },
+    { id1: "013" , id2: "014" , type: "Road" },
+    { id1: "014" , id2: "009" , type: "Road" },
+    { id1: "009" , id2: "039" , type: "Road" },
 
     // Horizontal Lines
-    { id1:"021" , id2:"000" },
-    { id1:"000" , id2:"001" },
-    { id1:"001" , id2:"010" },
-    { id1:"010" , id2:"002" },
-    { id1:"002" , id2:"003" },
-    { id1:"003" , id2:"012" },
-    { id1:"012" , id2:"004" },
-    { id1:"004" , id2:"022" },
+    { id1: "030" , id2: "000" , type: "Road" },
+    { id1: "000" , id2: "016" , type: "Road" },
+    { id1: "016" , id2: "001" , type: "Road" },
+    { id1: "001" , id2: "010" , type: "Road" },
+    { id1: "010" , id2: "002" , type: "Road" },
+    { id1: "002" , id2: "003" , type: "Road" },
+    { id1: "003" , id2: "012" , type: "Road" },
+    { id1: "012" , id2: "004" , type: "Road" },
+    { id1: "004" , id2: "031" , type: "Road" },
 
-    { id1:"023" , id2:"005" },
-    { id1:"005" , id2:"006" },
+    { id1: "032" , id2: "005" , type: "Road" },
+    { id1: "005" , id2: "018" , type: "Road" },
+    { id1: "018" , id2: "006" , type: "Road" },
 
-    { id1:"007" , id2:"008" },
-    { id1:"008" , id2:"009" },
-    { id1:"009" , id2:"015" },
-    { id1:"015" , id2:"024" },
+    { id1: "007" , id2: "020" , type: "Road" },
+    { id1: "020" , id2: "008" , type: "Road" },
+    { id1: "008" , id2: "009" , type: "Road" },
+    { id1: "009" , id2: "015" , type: "Road" },
+    { id1: "015" , id2: "033" , type: "Road" },
 
     // Access Points
-    { id1:"010" , id2:"016" },
-    { id1:"011" , id2:"017" },
-    { id1:"012" , id2:"017" },
-    { id1:"013" , id2:"018" },
-    { id1:"014" , id2:"018" },
-    { id1:"037" , id2:"032" },
-    { id1:"037" , id2:"033" },
-    { id1:"035" , id2:"036" },
-    { id1:"036" , id2:"034" },
-    { id1:"015" , id2:"018" }
+    //power station
+    { id1: "016" , id2: "023" , type: "Road" },
+    { id1: "017" , id2: "023" , type: "Road" },
+    //train station
+    { id1: "018" , id2: "022" , type: "Road" },
+    { id1: "019" , id2: "022" , type: "Road" },
+    //coffee shop
+    { id1: "010" , id2: "024" , type: "Road" },
+    //hospital
+    { id1: "011" , id2: "025" , type: "Road" },
+    { id1: "012" , id2: "025" , type: "Road" },
+    //USM
+    { id1: "020" , id2: "027" , type: "Road" },
+    { id1: "021" , id2: "027" , type: "Road" },
+    //middle school
+    { id1: "013" , id2: "026" , type: "Road" },
+    { id1: "014" , id2: "026" , type: "Road" },
+    { id1: "015" , id2: "026" , type: "Road" }
   ],
   buttons: [
     { name: "placeHold",
@@ -219,20 +262,54 @@ function setGraph(inGraph) {
 
   // Adds edge line elements
   for (var i = 0; i < currentGraph.edges.length; i++) {
-    //creating the edge
-    var edgeEle = document.createElementNS("http://www.w3.org/2000/svg", "line"),
-        edgeEleId = "edge" + currentGraph.edges[i].id1 + "" + currentGraph.edges[i].id2,
-        edgeEleClass1 = currentGraph.edges[i].id1 + "edge",
-        edgeEleClass2 = currentGraph.edges[i].id2 + "edge";
+    //drawing roads
+    if(currentGraph.edges[i].type == "PowerLine"){
+      var edgeEle = document.createElementNS("http://www.w3.org/2000/svg", "line"),
+          edgeEleId = "edge" + currentGraph.edges[i].id1 + "" + currentGraph.edges[i].id2,
+          edgeEleClass1 = currentGraph.edges[i].id1 + "edge",
+          edgeEleClass2 = currentGraph.edges[i].id2 + "edge";
 
-    edgeEle.setAttribute("id", edgeEleId);
-    edgeEle.classList.add("edge", edgeEleClass1, edgeEleClass2);
-    edgeEle.setAttribute("x1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cx);
-    edgeEle.setAttribute("y1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cy);
-    edgeEle.setAttribute("x2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cx);
-    edgeEle.setAttribute("y2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cy);
+      edgeEle.setAttribute("id", edgeEleId);
+      edgeEle.classList.add("edge", edgeEleClass1, edgeEleClass2);
+      edgeEle.setAttribute("x1", parseInt(currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cx) - 15);
+      edgeEle.setAttribute("y1", parseInt(currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cy) - 15);
+      edgeEle.setAttribute("x2", parseInt(currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cx) - 15);
+      edgeEle.setAttribute("y2", parseInt(currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cy) - 15);
+      edgeEle.style.stroke = "rgb(255, 127, 0)";
 
-    svg.appendChild(edgeEle);
+      svg.appendChild(edgeEle);
+    }
+    else if(currentGraph.edges[i].type == "Railroad"){
+      var edgeEle = document.createElementNS("http://www.w3.org/2000/svg", "line"),
+          edgeEleId = "edge" + currentGraph.edges[i].id1 + "" + currentGraph.edges[i].id2,
+          edgeEleClass1 = currentGraph.edges[i].id1 + "edge",
+          edgeEleClass2 = currentGraph.edges[i].id2 + "edge";
+
+      edgeEle.setAttribute("id", edgeEleId);
+      edgeEle.classList.add("edge", edgeEleClass1, edgeEleClass2);
+      edgeEle.setAttribute("x1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cx);
+      edgeEle.setAttribute("y1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cy);
+      edgeEle.setAttribute("x2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cx);
+      edgeEle.setAttribute("y2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cy);
+      edgeEle.setAttribute("stroke-dasharray", "25,15");
+
+      svg.appendChild(edgeEle);
+    }
+    else{
+      var edgeEle = document.createElementNS("http://www.w3.org/2000/svg", "line"),
+          edgeEleId = "edge" + currentGraph.edges[i].id1 + "" + currentGraph.edges[i].id2,
+          edgeEleClass1 = currentGraph.edges[i].id1 + "edge",
+          edgeEleClass2 = currentGraph.edges[i].id2 + "edge";
+
+      edgeEle.setAttribute("id", edgeEleId);
+      edgeEle.classList.add("edge", edgeEleClass1, edgeEleClass2);
+      edgeEle.setAttribute("x1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cx);
+      edgeEle.setAttribute("y1", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id1]].cy);
+      edgeEle.setAttribute("x2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cx);
+      edgeEle.setAttribute("y2", currentGraph.nodes[currentGraph.idToIndex[currentGraph.edges[i].id2]].cy);
+
+      svg.appendChild(edgeEle);
+    }
   }
 
   // Adds node group elements and menus
@@ -297,8 +374,48 @@ function setGraph(inGraph) {
       nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
     }
 
-    //draws squares
-    else {
+    //draws power stations
+    else if(currentGraph.nodes[i].type == "PowerStation"){
+      //creating the node
+          nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "rect"),
+          nodeId = "node" + currentGraph.nodes[i].id;
+          nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
+          nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      //the node's attributes
+      nodeShape.setAttribute("id", nodeId);
+      nodeShape.classList.add("node");
+      nodeShape.setAttribute("x", parseInt(currentGraph.nodes[i].cx) - 35);
+      nodeShape.setAttribute("y", parseInt(currentGraph.nodes[i].cy) - 35);
+      nodeShape.setAttribute("width", "140");
+      nodeShape.setAttribute("height", "140");
+      nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
+      nodeShape.setAttribute("stroke-width", "3");
+      nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
+    }
+
+    //draws train stations
+    else if(currentGraph.nodes[i].type == "TrainStation"){
+      //creating the node
+          nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "rect"),
+          nodeId = "node" + currentGraph.nodes[i].id;
+          nodeText = document.createElementNS("http://www.w3.org/2000/svg", "text"),
+          nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      //the node's attributes
+      nodeShape.setAttribute("id", nodeId);
+      nodeShape.classList.add("node");
+      nodeShape.setAttribute("x", parseInt(currentGraph.nodes[i].cx) - 35);
+      nodeShape.setAttribute("y", parseInt(currentGraph.nodes[i].cy) - 35);
+      nodeShape.setAttribute("width", "140");
+      nodeShape.setAttribute("height", "70");
+      nodeShape.setAttribute("stroke", "rgb(0, 0, 0)");
+      nodeShape.setAttribute("stroke-width", "3");
+      nodeShape.setAttribute("fill", "rgb(255, 255, 255)");
+    }
+
+    //draws businesses
+    else if(currentGraph.nodes[i].type == "Business"){
       //creating the node
           nodeShape = document.createElementNS("http://www.w3.org/2000/svg", "rect"),
           nodeId = "node" + currentGraph.nodes[i].id;

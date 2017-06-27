@@ -65,7 +65,7 @@ function setTheme(newTheme) {
   for (var i = 0; i < nodeList.length; i++) {
     var nodeId = nodeList[i].id.substr(4,3);
     setColor(nodeId, currentGraph.nodeStates[nodeId], currentGraph.nodes[i].type);
-    setAdjEdgeColors(nodeId, currentGraph.nodeStates[nodeId]);
+    //setAdjEdgeColors(nodeId, currentGraph.nodeStates[nodeId]);
   }
   var menuList = document.getElementsByClassName("menu");
   for (var i = 0; i < menuList.length; i++) {

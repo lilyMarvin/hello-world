@@ -48,9 +48,26 @@ function initializeListeners() {
   document.getElementById("cmdButton").addEventListener("click", function() {
     document.getElementById("cmdWindow").style.visibility = "visible";
   });
-  // "Toggle Edges" Button
-  document.getElementById("toggleEdgesButton").addEventListener("click", function() {
-        toggleEdges();
+
+
+
+
+  //"EDGES" DROPDOWN
+  // "Toggle All Edges" Button
+  document.getElementById("toggleAllEdgesButton").addEventListener("click", function() {
+        toggleAllEdges();
+  });
+  // "Toggle Roads" Button
+  document.getElementById("toggleRoadsButton").addEventListener("click", function() {
+        toggleRoads();
+  });
+  // "Toggle Power Lines" Button
+  document.getElementById("togglePowerLinesButton").addEventListener("click", function() {
+        togglePowerLines();
+  });
+  // "Toggle Railroads" Button
+  document.getElementById("toggleRailroadsButton").addEventListener("click", function() {
+        toggleRailroads();
   });
 
 
@@ -74,8 +91,8 @@ function initializeListeners() {
 
 
 
-//toggling the edges
-function toggleEdges() {
+//toggling all the edges
+function toggleAllEdges() {
   var edges = document.getElementsByClassName("edge");
     for (var i = 0; i < edges.length; i++) {
       if(edges[i].style.visibility == "hidden") {
@@ -86,6 +103,54 @@ function toggleEdges() {
       }
     }
 }
+
+//toggling roads
+function toggleRoads() {
+  var edges = document.getElementsByClassName("edge");
+    for (var i = 0; i < edges.length; i++) {
+      if(currentGraph.edges[i].type == "Road"){
+        if(edges[i].style.visibility == "hidden") {
+          edges[i].style.visibility = "visible";
+        }
+        else {
+          edges[i].style.visibility = "hidden";
+        }
+      }
+    }
+}
+
+//toggling power lines
+function togglePowerLines() {
+  var edges = document.getElementsByClassName("edge");
+    for (var i = 0; i < edges.length; i++) {
+      if(currentGraph.edges[i].type == "PowerLine"){
+        if(edges[i].style.visibility == "hidden") {
+          edges[i].style.visibility = "visible";
+        }
+        else {
+          edges[i].style.visibility = "hidden";
+        }
+      }
+    }
+}
+
+//toggling railroads
+function toggleRailroads() {
+  var edges = document.getElementsByClassName("edge");
+    for (var i = 0; i < edges.length; i++) {
+      if(currentGraph.edges[i].type == "Railroad"){
+        if(edges[i].style.visibility == "hidden") {
+          edges[i].style.visibility = "visible";
+        }
+        else {
+          edges[i].style.visibility = "hidden";
+        }
+      }
+    }
+}
+
+
+
 
 
 //setting the color for the node
@@ -115,7 +180,7 @@ function setColor(nodeId, val, type) {
 
   node.nextElementSibling.setAttribute("fill", theme.fontFill[val]);
 
-  setAdjEdgeColors(nodeId, val);
+  //setAdjEdgeColors(nodeId, val);
 }
 
 
@@ -178,15 +243,22 @@ function resetToDefault() {
       if(currentGraph.nodes[i].type == "UnpoweredIntersection" || currentGraph.nodes[i].type == "PoweredIntersection"){
         nodeEle.setAttribute("r", "30");
       }
-      if(currentGraph.nodes[i].type == "Border"){
-        nodeEle.setAttribute("r", "15");
-      }
-      else{
+      else if(currentGraph.nodes[i].type == "AccessPoint"){
         nodeEle.setAttribute("r", "20");
       }
-
-      nodeEle.setAttribute("width", "70");
-      nodeEle.setAttribute("height", "70");
+      else if(currentGraph.nodes[i].type == "PowerStation"){
+        nodeEle.setAttribute("width", "140");
+        nodeEle.setAttribute("height", "140");
+      }
+      else if(currentGraph.nodes[i].type == "TrainStation"){
+        nodeEle.setAttribute("width", "140");
+        nodeEle.setAttribute("height", "70");
+        }
+      else{
+        nodeEle.setAttribute("r", "15");
+        nodeEle.setAttribute("width", "70");
+        nodeEle.setAttribute("height", "70");
+      }
 
       nodeEle.nextElementSibling.style.fontSize = "40px";
       nodeEle.nextElementSibling.style.transform = "translateY(12px)";
@@ -208,6 +280,14 @@ function addNodeHover(nodeId, node) {
           || currentGraph.nodes[nodeId].type == "PoweredIntersection" || currentGraph.nodes[nodeId].type == "Border") {
         node.setAttribute("r", parseInt(node.getAttribute("r")) + incVal);
       }
+      else if(currentGraph.nodes[nodeId].type == "TrainStation"){
+        var width = parseInt(node.getAttribute("width"));
+            height = parseInt(node.getAttribute("height"));
+            node.setAttribute("x", parseInt(node.getAttribute("x")) - incVal);
+            node.setAttribute("y", parseInt(node.getAttribute("y")) - incVal);
+            node.setAttribute("height", height + 2 * incVal);
+            node.setAttribute("width", width + 2 * incVal);
+      }
       else {
         var width = parseInt(node.getAttribute("width"));
         node.setAttribute("x", parseInt(node.getAttribute("x")) - incVal);
@@ -225,6 +305,14 @@ function addNodeHover(nodeId, node) {
       if (currentGraph.nodes[nodeId].type == "AccessPoint" || currentGraph.nodes[nodeId].type == "UnpoweredIntersection"
           || currentGraph.nodes[nodeId].type == "PoweredIntersection" || currentGraph.nodes[nodeId].type == "Border") {
         node.setAttribute("r", parseInt(node.getAttribute("r")) - incVal);
+      }
+      else if(currentGraph.nodes[nodeId].type == "TrainStation"){
+        var width = parseInt(node.getAttribute("width"));
+            height = parseInt(node.getAttribute("height"));
+        node.setAttribute("x", parseInt(node.getAttribute("x")) + incVal);
+        node.setAttribute("y", parseInt(node.getAttribute("y")) + incVal);
+        node.setAttribute("height", height - 2 * incVal);
+        node.setAttribute("width", width - 2 * incVal);
       }
       else {
         var width = parseInt(node.getAttribute("width"));
